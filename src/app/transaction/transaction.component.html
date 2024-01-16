@@ -1,0 +1,32 @@
+<!-- expense-tracker.component.html -->
+<div class="container">
+    <h1>Expense Tracker</h1>
+    <form (submit)="addExpense(expenseName, expenseAmount)">
+        <input type="text" #expenseName placeholder="Expense Name" required />
+        <input type="number" #expenseAmount placeholder="Amount" required />
+        <button type="submit">Add Expense</button>
+      </form>
+    <div class="expense-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Expense Name</th>
+            <th>Amount</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let expense of expenses; let i = index">
+            <td>{{ expense.name }}</td>
+            <td>${{ expense.amount.toFixed(2) }}</td>
+            <td class="delete-btn" (click)="deleteExpense(i)">Delete</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="total-amount">
+        <strong>Total:</strong>
+        $<span>{{ totalAmount.toFixed(2) }}</span>
+      </div>
+    </div>
+  </div>
+  
